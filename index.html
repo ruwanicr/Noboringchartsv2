@@ -7,87 +7,65 @@
 <meta name="description" content="Sri Lanka's population as a swarm of dots: 21.78 million people from the 2024 census, regrouped by year, age, ethnic group and where they live. No bar charts allowed.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23e4572e'/%3E%3Ccircle cx='11.5' cy='13' r='2' fill='%23fff7e6'/%3E%3Ccircle cx='20.5' cy='13' r='2' fill='%23fff7e6'/%3E%3Cpath d='M9 19 Q16 26 23 19' stroke='%23fff7e6' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Caveat:wght@500;700&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.3/p5.min.js"></script>
 <style>
-:root{--bg:#fff7e6;--ink:#2b2118;--dim:#7a6a55;--red:#e4572e;--gold:#f2b134;--teal:#2a9d8f;--blue:#3d5a98;--pink:#ef8fa6;--card:#fffdf6;--line:#2b2118}
+:root{--bg:#0b0d10;--ink:#f4f4f0;--dim:#bec3cc;--red:#ff938e;--gold:#efff89;--teal:#76f5d1;--blue:#b0b5ff;--pink:#ff9ee2;--card:#15181e;--line:#3b414b}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:17px;line-height:1.5;
- background-image:radial-gradient(rgba(43,33,24,.09) 1.2px,transparent 1.3px);background-size:26px 26px}
-a{color:var(--red)}
-.hand{font-family:'Caveat Brush','Caveat',cursive;font-weight:400}
-.topbar{max-width:1080px;margin:auto;padding:14px 22px 0;display:flex;justify-content:space-between;align-items:center}
-.topbar svg{height:46px;width:auto;display:block}
-nav{display:flex;gap:18px}nav a{font-family:Caveat,cursive;font-weight:700;font-size:22px;color:var(--ink);text-decoration:none;border-bottom:3px solid transparent}nav a:hover{border-bottom-color:var(--gold)}
-.hero{max-width:1080px;margin:auto;padding:18px 22px 10px;text-align:center}
-.hero .logo{width:min(640px,96%);height:auto;display:block;margin:0 auto 6px}
-h1{font-family:'Caveat Brush',cursive;font-weight:400;font-size:clamp(40px,8vw,76px);line-height:1;margin:8px 0 12px}
-h1 em{font-style:normal;color:var(--red);position:relative;white-space:nowrap}
-h1 em:after{content:"";position:absolute;left:-2%;right:-2%;bottom:-8px;height:12px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M8 7 Q15 1 28 7 T55 6 T82 8 T110 5 T140 8 T170 5 T192 7' stroke='%23f2b134' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/100% 100% no-repeat}
-.lede{max-width:600px;margin:14px auto 18px;color:#4d3f30}
-.hero-stat{display:inline-block;transform:rotate(-2deg);background:var(--gold);border:3px solid var(--ink);border-radius:18px 24px 16px 26px;padding:8px 20px;box-shadow:4px 4px 0 var(--ink)}
-.hero-stat strong{font-family:'Caveat Brush',cursive;font-weight:400;font-size:36px;display:block;line-height:1.05}.hero-stat span{font-size:14px;font-weight:700}
-.stamp{display:block;font-family:Caveat,cursive;font-weight:700;font-size:19px;color:var(--dim);margin-top:14px}
+html{background:#08090b;scroll-behavior:smooth;scroll-padding-top:20px}
+body{margin:0;background:radial-gradient(ellipse at 18% 0%,#1b2029 0%,transparent 52%),linear-gradient(155deg,#101216 0%,#08090b 55%,#12151b 100%);background-repeat:no-repeat;color:var(--ink);font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:17px;line-height:1.5}
+a{color:var(--teal);text-underline-offset:4px}
+a:hover{color:var(--gold)}
+.hand{font-family:'Cormorant Garamond',sans-serif;font-weight:500}
+.topbar{max-width:1080px;margin:auto;padding:24px 22px 0;display:flex;justify-content:space-between;align-items:center;gap:22px}
+.wordmark{font-style:italic;font-family:'Cormorant Garamond',sans-serif;font-weight:500;letter-spacing:-.025em;text-decoration:none;color:var(--ink);line-height:1.05}
+.topbar .wordmark{font-size:30px;white-space:nowrap}
+nav{display:flex;gap:22px}nav a{font-size:15px;font-weight:700;color:var(--dim);text-decoration:none;border-bottom:2px solid transparent}nav a:hover{border-bottom-color:var(--teal)}
+.hero{max-width:1080px;margin:auto;padding:42px 22px 18px;text-align:center}
+.hero .wordmark{display:block;font-size:clamp(42px,7.8vw,94px);margin:0 auto 22px;text-shadow:none}
+h1{font-family:'Cormorant Garamond',sans-serif;font-weight:500;font-size:clamp(43px,6vw,68px);line-height:1.05;letter-spacing:-.035em;margin:8px 0 12px}
+h1 em{font-style:italic;color:var(--teal)}
+.lede{max-width:610px;margin:18px auto 22px;color:var(--dim)}
+.hero-stat{display:inline-block;background:transparent;color:var(--gold);border-top:1px solid #626655;border-bottom:1px solid #626655;padding:12px 28px 14px}
+.hero-stat strong{font-family:'Cormorant Garamond',sans-serif;font-weight:500;font-size:46px;display:block;line-height:1.1}.hero-stat span{font-size:14px;font-weight:700}
+.stamp{display:block;font-size:14px;color:var(--dim);margin-top:18px}
 main{max-width:1080px;margin:auto;padding:0 22px 40px}
-.panel{background:var(--card);border:3px solid var(--ink);border-radius:26px 34px 24px 30px;box-shadow:6px 6px 0 var(--ink);margin-top:26px;overflow:hidden}
-.panelhead{padding:20px 24px 4px}
-.panelhead h2{font-family:'Caveat Brush',cursive;font-weight:400;font-size:34px;margin:0}
+.panel{background:linear-gradient(145deg,#191d24,#101217);border:1px solid var(--line);border-radius:12px;margin-top:24px;overflow:hidden;box-shadow:0 12px 50px #00000018}
+.panelhead{padding:24px 24px 4px}.panelhead h2{font-family:'Cormorant Garamond',sans-serif;font-weight:500;font-size:36px;line-height:1.15;margin:0 0 6px}
 .panelhead p{margin:0;color:var(--dim);font-size:15px}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.tabs button{font-family:Caveat,cursive;font-weight:700;font-size:21px;color:var(--ink);background:#fff;border:2.5px solid var(--ink);border-radius:999px;padding:3px 16px;cursor:pointer;transition:transform .15s}
-.tabs button:hover{transform:rotate(-2deg) scale(1.05)}
-.tabs button.active{background:var(--red);color:#fff;transform:rotate(-1.5deg)}
-.stage{position:relative;margin-top:6px}
-#p5{display:block;touch-action:pan-y}#p5 canvas{display:block;touch-action:pan-y}
-.hint{position:absolute;right:16px;top:8px;font-family:Caveat,cursive;font-weight:700;font-size:19px;color:var(--dim);pointer-events:none;transform:rotate(3deg)}
-.caption{padding:4px 24px 20px;border-top:3px dashed rgba(43,33,24,.25);margin-top:2px}
-.caption h3{font-family:'Caveat Brush',cursive;font-weight:400;font-size:30px;margin:14px 0 2px}
-.caption p{margin:0 0 10px;color:#4d3f30;font-size:16px}
-.legend{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 22px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tabs button{font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid #555e6d;border-radius:5px;min-height:44px;padding:8px 18px;cursor:pointer;transition:transform .15s,background .15s}
+.tabs button:hover{border-color:var(--teal)}
+.tabs button.active{background:var(--teal);color:#26282c;border-color:var(--teal);box-shadow:0 0 18px #76f5d120}
+:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.stage{position:relative;margin-top:6px}#p5{display:block;touch-action:pan-y}#p5 canvas{display:block;touch-action:pan-y}
+.hint{position:absolute;right:24px;top:12px;font-family:'Cormorant Garamond',sans-serif;font-size:18px;font-style:italic;color:var(--dim);pointer-events:none}
+.caption{padding:4px 24px 24px;border-top:1px dashed var(--line);margin-top:2px}
+.caption h3{font-family:'Cormorant Garamond',sans-serif;font-weight:500;font-size:34px;margin:16px 0 6px}
+.caption p{margin:0 0 14px;color:var(--dim);font-size:16px}
+.legend{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px 22px}
 .legend li{display:flex;gap:10px;align-items:baseline;font-size:15px}
-.legend i{flex:none;width:13px;height:13px;border-radius:50%;border:2px solid var(--ink);transform:translateY(1px)}
+.legend i{flex:none;width:11px;height:11px;border-radius:50%;transform:translateY(1px);box-shadow:0 0 10px currentColor}
 .legend b{font-weight:700}.legend span{color:var(--dim)}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px;margin:38px 0 10px}
-.fact{background:#fff;border:3px solid var(--ink);padding:18px 18px 14px;box-shadow:4px 4px 0 var(--ink);border-radius:6px 20px 8px 18px}
-.fact:nth-child(1){background:#ffe9a8;transform:rotate(-1.6deg)}.fact:nth-child(2){background:#cfece6;transform:rotate(1.2deg)}.fact:nth-child(3){background:#ffd9d0;transform:rotate(-.8deg)}.fact:nth-child(4){background:#d7def0;transform:rotate(1.6deg)}
-.fact small{font-family:Caveat,cursive;font-weight:700;font-size:20px;display:block}
-.fact strong{font-family:'Caveat Brush',cursive;font-weight:400;font-size:34px;line-height:1.1;display:block}
-.fact p{margin:6px 0 0;font-size:14.5px;line-height:1.4}
-.note{background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:16px 20px;margin-top:28px;font-size:15px;color:#4d3f30}
-.sources{margin-top:34px;font-size:14px;color:#4d3f30}.sources h2{font-family:'Caveat Brush',cursive;font-weight:400;font-size:30px;margin:0 0 8px;color:var(--ink)}
-.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 30px}.sources p{margin:0 0 10px}
-.footer{max-width:1080px;margin:auto;padding:10px 22px 38px;display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--dim);font-family:Caveat,cursive;font-weight:700;font-size:20px}
-.footer svg{height:40px;flex:none}
-@media(max-width:700px){body{font-size:16px}.topbar svg{height:38px}nav{gap:12px}nav a{font-size:19px}.hero{padding-top:8px}main{padding:0 14px 30px}.panelhead{padding:18px 16px 2px}.caption{padding:4px 16px 18px}.source-grid{grid-template-columns:1fr}.footer{flex-direction:column;text-align:center}.hint{display:none}.legend{grid-template-columns:1fr}.tabs button{font-size:19px;padding:2px 13px}}
-@media(prefers-reduced-motion:reduce){.tabs button{transition:none}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin:34px 0 10px}
+.fact{background:linear-gradient(145deg,#191d24,#101217);border:1px solid var(--line);border-top:3px solid var(--gold);padding:20px 18px 18px;border-radius:6px}
+.fact:nth-child(1){--accent:var(--gold)}.fact:nth-child(2){--accent:var(--teal);border-top-color:var(--teal)}.fact:nth-child(3){--accent:var(--red);border-top-color:var(--red)}.fact:nth-child(4){--accent:var(--blue);border-top-color:var(--blue)}
+.fact small{font-size:14px;color:var(--dim);display:block;margin-bottom:10px}
+.fact strong{font-family:'Cormorant Garamond',sans-serif;font-weight:500;font-size:36px;line-height:1.04;display:block;color:var(--accent)}
+.fact p{margin:12px 0 0;color:var(--dim);font-size:14.5px;line-height:1.5}
+.note{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px;margin-top:26px;font-size:15px;color:var(--dim)}.note strong{color:var(--ink)}
+.sources{margin-top:32px;font-size:14px;color:var(--dim)}.sources h2{font-family:'Cormorant Garamond',sans-serif;font-weight:500;font-size:34px;margin:0 0 14px;color:var(--ink)}
+.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 30px}.sources p{margin:0 0 14px}
+.footer{max-width:1080px;margin:auto;padding:12px 22px 36px;border-top:1px solid #42464e;display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--dim);font-size:14px}.footer .wordmark{font-size:28px}
+@media(max-width:700px){body{font-size:16px}.topbar{padding:20px 18px 0;align-items:flex-start;flex-wrap:wrap;gap:14px}.topbar .wordmark{font-size:29px}nav{gap:20px}nav a{font-size:14px}.hero{padding:30px 18px 12px}.hero .wordmark{margin-bottom:20px}main{padding:0 14px 30px}.panelhead{padding:20px 16px 2px}.panelhead h2{font-size:32px}.caption{padding:4px 16px 20px}.source-grid{grid-template-columns:1fr}.footer{flex-direction:column;text-align:center;margin:0 14px}.hint{display:none}.legend{grid-template-columns:1fr}.tabs{gap:8px}.tabs button{font-size:14px;padding:8px 14px}.hero-stat strong{font-size:42px}.facts{gap:14px}.fact strong{font-size:36px}}
+@media(prefers-reduced-motion:reduce){html{background:#08090b;scroll-behavior:auto}.tabs button{transition:none}}
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
- <filter id="wobble" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/></filter>
- <symbol id="logo" viewBox="0 0 640 245">
-  <g filter="url(#wobble)" stroke-linecap="round" stroke-linejoin="round">
-   <!-- crowd of dots doodle -->
-   <circle cx="42" cy="168" r="11" fill="#2a9d8f" stroke="#2b2118" stroke-width="3.5"/><circle cx="76" cy="188" r="9" fill="#f2b134" stroke="#2b2118" stroke-width="3.5"/><circle cx="598" cy="38" r="10" fill="#3d5a98" stroke="#2b2118" stroke-width="3.5"/><circle cx="622" cy="70" r="7" fill="#ef8fa6" stroke="#2b2118" stroke-width="3.5"/>
-   <text x="14" y="104" rotate="-6 3 -4 5" font-family="'Caveat Brush','Caveat',cursive" font-size="104" fill="#e4572e" stroke="#2b2118" stroke-width="3.5" paint-order="stroke">no</text>
-   <text x="148" y="98" rotate="3 -4 5 -3 4 -2" font-family="'Caveat Brush','Caveat',cursive" font-size="104" fill="#2b2118">boring</text>
-   <!-- scribble cross-out -->
-   <path d="M142 70 C 230 52, 340 46, 472 62" stroke="#e4572e" stroke-width="8" fill="none"/>
-   <path d="M146 92 C 240 74, 350 72, 468 86" stroke="#e4572e" stroke-width="7" fill="none" opacity=".9"/>
-   <text x="20" y="206" rotate="-2 3 -4 2 -3 4" font-family="'Caveat Brush','Caveat',cursive" font-size="104" fill="#3d5a98" stroke="#2b2118" stroke-width="3.5" paint-order="stroke" transform="translate(70 -6)">charts</text>
-   <!-- crossed-out tiny bar chart -->
-   <g transform="translate(445 128) rotate(5)"><rect x="0" y="48" width="18" height="30" fill="#fff" stroke="#2b2118" stroke-width="3.5"/><rect x="26" y="26" width="18" height="52" fill="#fff" stroke="#2b2118" stroke-width="3.5"/><rect x="52" y="6" width="18" height="72" fill="#fff" stroke="#2b2118" stroke-width="3.5"/><path d="M-12 86 H84" stroke="#2b2118" stroke-width="3.5" fill="none"/><path d="M-10 0 L88 96 M90 -2 L-8 98" stroke="#e4572e" stroke-width="9" fill="none"/></g>
-   <!-- squiggle underline -->
-   <path d="M90 222 Q 130 208 170 220 T 250 218 T 330 220 T 410 216" stroke="#f2b134" stroke-width="7" fill="none"/>
-   <!-- sparkles -->
-   <path d="M560 160 l5 -14 l5 14 l14 5 l-14 5 l-5 14 l-5 -14 l-14 -5z" fill="#f2b134" stroke="#2b2118" stroke-width="3"/>
-   <path d="M300 150 q10 -8 20 0" stroke="#2b2118" stroke-width="0" fill="none"/>
-  </g>
- </symbol>
-</defs></svg>
-<header class="topbar"><a href="#top" aria-label="No Boring Charts"><svg viewBox="0 0 640 245" role="img" aria-label="No Boring Charts logo" style="width:auto"><use href="#logo"/></svg></a><nav><a href="#chart">The swarm</a><a href="#facts">Facts</a><a href="#sources">Sources</a></nav></header>
+
+<header class="topbar"><a class="wordmark" href="#top">no boring charts</a><nav><a href="#chart">The swarm</a><a href="#facts">Facts</a><a href="#sources">Sources</a></nav></header>
 <section class="hero" id="top">
- <svg class="logo" viewBox="0 0 640 245" role="img" aria-label="No Boring Charts: hand-written logo with a crossed-out bar chart"><use href="#logo"/></svg>
+ <div class="wordmark">no boring charts</div>
  <h1>Sri Lanka, <em>in people.</em></h1>
  <p class="lede">Every dot below is about 100,000 people. Poke them, then regroup them by year, age, ethnic group or where they live.</p>
  <div class="hero-stat"><strong>21.756 million</strong><span>estimated at 1 July 2025</span></div>
@@ -109,10 +87,10 @@ main{max-width:1080px;margin:auto;padding:0 22px 40px}
 <section class="note"><strong>How to read the dots:</strong> One dot is about 100,000 people, so every group is rounded to the nearest dot and tiny groups can be a single dot or less. Exact numbers are in the list under each view. The yearly view uses DCS mid-year estimates; hollow dots show how many more people the estimate had than in 2025. The 2024 census is a separate count taken on 19 December, not another July estimate, and the 2025 estimate is provisional. The final census count is 18,630 above the preliminary release.</section>
 <section id="sources" class="sources"><h2>Sources & notes</h2><div class="source-grid"><div><p><strong>Annual estimates:</strong> Department of Census and Statistics, <a href="https://www.statistics.gov.lk/statistical_datasheet/datasheet-2025/english" target="_blank" rel="noreferrer">Statistical Data Sheet 2025</a> (2022–24, in thousands); <a href="https://rgd.gov.lk/web/images/2026/statistics/Mid_Pop_Review_to_web_RGO_English2025.pdf" target="_blank" rel="noreferrer">Registrar General's Department, Mid-year population review, October 2025</a> (provisional 1 July 2025).</p><p><strong>Final count and breakdowns:</strong> DCS, <a href="https://www.statistics.gov.lk/Resource/en/Population/CPH_2024/CPH2024_Final_Eng.pdf" target="_blank" rel="noreferrer">Census of Population and Housing 2024 Final Report</a>, census moment 19 December 2024.</p></div><div><p><strong>Tables:</strong> DCS <a href="https://www.statistics.gov.lk/Resource/en/Population/CPH_2024/CPH_2024_Population_Tables.pdf" target="_blank" rel="noreferrer">Basic Population Tables</a> (sector table A1; ethnic group table A3); <a href="https://www.statistics.gov.lk/Population/StaticalInformation/CPH2024" target="_blank" rel="noreferrer">CPH-2024 portal</a> (district, sex, age, ethnicity, religion, sector, GN and DS-level data).</p><p><strong>Cross-check:</strong> <a href="https://api.worldbank.org/v2/country/LKA/indicator/SP.POP.TOTL?date=2022%3A2025&format=json" target="_blank" rel="noreferrer">World Bank WDI API, SP.POP.TOTL</a> (2022: 22.181m; 2023: 22.037m; 2024: 21.916m; 2025: 21.756m). This series aligns with mid-year estimates, not the census count.</p></div></div><p>Population changes refer to estimates; the census breakdowns are a one-time snapshot. Values are not interchangeable or directly comparable across reference dates.</p></section>
 </main>
-<footer class="footer"><svg viewBox="0 0 640 245" aria-hidden="true"><use href="#logo"/></svg><div>Source-led, not guess-led. No bars were harmed.</div></footer>
+<footer class="footer"><span class="wordmark">no boring charts</span><div>Source-led, not guess-led. No bars were harmed.</div></footer>
 <script>
-const COLORS=['#e4572e','#f2b134','#2a9d8f','#3d5a98','#ef8fa6'];
-const INK='#2b2118';
+const COLORS=['#ff938e','#efff89','#76f5d1','#b0b5ff','#ff9ee2'];
+const INK='#101217';
 const fmt=n=>n.toLocaleString('en-US');
 const MODES={
  all:{title:'All of us',text:'21,781,800 people were counted at midnight on 19 December 2024. That is about 218 dots.',
@@ -144,7 +122,7 @@ const sketch=p=>{
  function plan(){
   const lay=(wide?LAY.wide:LAY.tall)[mode];const k=wide?1:Math.min(1.25,W/360);const s=lay.s*(wide?Math.min(1.1,W/1100):W/390);
   groupsNow=[];let id=0;
-  MODES[mode].groups.forEach((g,gi)=>{const cx=lay.at[gi][0]*W,cy=lay.at[gi][1]*H;const r=.8*s*Math.sqrt(g.dots)+s*.3;groupsNow.push({g,cx,cy,r,s,gi});
+  MODES[mode].groups.forEach((g,gi)=>{let cx=lay.at[gi][0]*W;const cy=lay.at[gi][1]*H;const r=.8*s*Math.sqrt(g.dots)+s*.3;cx=Math.max(r+8,Math.min(W-r-8,cx));groupsNow.push({g,cx,cy,r,s,gi});
    for(let j=0;j<g.dots;j++){const q=P[id++];q.group=gi;q.j=j;q.active=true;q.ghost=!!(g.ghost&&j>=g.dots-g.ghost);q.col=g.c;q.size=s*.6;}
   });
   for(;id<NMAX;id++){P[id].active=false}
@@ -152,7 +130,7 @@ const sketch=p=>{
  p.setup=()=>{dims();const c=p.createCanvas(W,H);c.parent('p5');p.frameRate(40);
   for(let i=0;i<NMAX;i++){P.push({x:W/2+p.random(-60,60),y:H/2+p.random(-60,60),vx:0,vy:0,a:0,size:10,seed:p.random(1000),active:false,group:0,j:0,col:0,ghost:false})}
   plan();setCaption();sizeKey=W+'x'+H;
-  if(document.fonts&&document.fonts.load){Promise.all([document.fonts.load('22px Caveat'),document.fonts.load('22px "Caveat Brush"')]).then(()=>{fontOK=true}).catch(()=>{fontOK=true})}else fontOK=true;
+  if(document.fonts&&document.fonts.load){Promise.all([document.fonts.load('500 22px "Hanken Grotesk"'),document.fonts.load('italic 500 42px "Cormorant Garamond"')]).then(()=>{fontOK=true}).catch(()=>{fontOK=true})}else fontOK=true;
  };
  p.windowResized=()=>{dims();p.resizeCanvas(W,H);plan()};
  window.__setMode=m=>{mode=m;plan();setCaption()};
@@ -183,11 +161,13 @@ const sketch=p=>{
    if(q.a<.03)continue;p.strokeWeight(Math.max(1.1,Math.min(2.2,q.size*.17)));const hot=hoverGroup===q.group&&q.active;const sz=q.size*(hot?1.18:1);
    const sq=1+Math.min(.35,Math.hypot(q.vx,q.vy)*.05);
    p.push();p.translate(q.x,q.y);p.rotate(Math.atan2(q.vy,q.vx));p.scale(sq,1/Math.sqrt(sq));
+   p.drawingContext.shadowColor=COLORS[q.col];p.drawingContext.shadowBlur=q.ghost?0:9;
    p.stroke(INK+(q.a<.95?p.hex(Math.floor(q.a*255),2):''));
    if(q.ghost){p.noFill();p.drawingContext.setLineDash([3,3])}else{const c=p.color(COLORS[q.col]);c.setAlpha(q.a*255);p.fill(c);p.drawingContext.setLineDash([])}
    p.ellipse(0,0,sz,sz);p.drawingContext.setLineDash([]);
    p.pop();
   }
+  p.drawingContext.shadowBlur=0;
   // faces on a few dots
   p.noStroke();
   for(let i=0;i<P.length;i+=7){const q=P[i];if(q.a<.8||q.ghost)continue;const sz=q.size;if(sz<9)continue;p.fill(255,247,230,230);const o=sz*.17;p.ellipse(q.x-o,q.y-sz*.08,sz*.2,sz*.2);p.ellipse(q.x+o,q.y-sz*.08,sz*.2,sz*.2);p.fill(INK);p.ellipse(q.x-o+p.constrain(q.vx*.1,-1,1),q.y-sz*.08,sz*.09,sz*.09);p.ellipse(q.x+o+p.constrain(q.vx*.1,-1,1),q.y-sz*.08,sz*.09,sz*.09)}
@@ -195,11 +175,16 @@ const sketch=p=>{
   p.textAlign(p.CENTER,p.TOP);
   groupsNow.forEach((G,i)=>{
    const small=W<640;const y=G.cy+G.r+4;
-   const fam=fontOK?'"Caveat Brush"':'cursive';
+   const fam=fontOK?'Hanken Grotesk':'sans-serif';
    p.noStroke();
    p.textFont(fam);p.textStyle(p.NORMAL);
-   p.textSize((small?21:27)*(hoverGroup===i?1.1:1));p.fill(INK);p.text(G.g.label,G.cx,y);
-   p.textFont(fontOK?'Caveat':'cursive');p.textStyle(p.BOLD);p.textSize(small?17:20);p.fill('#7a6a55');p.text(G.g.sub,G.cx,y+(small?22:28));
+   p.textSize((small?20:25)*(hoverGroup===i?1.05:1));p.fill('#f4f4f0');
+   const maxLabel=small?W*.43:(mode==='ethnicity'?W*.19:W*.23);
+   const words=G.g.label.split(' '), lines=[];let line='';
+   words.forEach(word=>{const next=line?line+' '+word:word;if(p.textWidth(next)>maxLabel&&line){lines.push(line);line=word}else line=next});if(line)lines.push(line);
+   const lx=Math.max(maxLabel/2+6,Math.min(W-maxLabel/2-6,G.cx));
+   lines.forEach((line,j)=>p.text(line,lx,y+j*(small?22:27)));
+   p.textFont(fontOK?'Hanken Grotesk':'sans-serif');p.textStyle(p.BOLD);p.textSize(small?17:20);p.fill('#bec3cc');p.text(G.g.sub,lx,y+lines.length*(small?22:27));
   });
  };
 };
